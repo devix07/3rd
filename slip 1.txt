@@ -1,0 +1,265 @@
+Q1 A
+#include <stdio.h>
+#include <stdlib.h>
+struct BST
+{
+
+     int data;
+     struct BST *left;
+     struct BST *right;
+
+};
+
+typedef struct BST NODE;
+NODE *node;
+NODE* createtree(NODE *node, int data)
+
+{
+
+     if (node == NULL)
+     {
+
+     NODE *temp;
+     temp= (NODE*)malloc(sizeof(NODE));
+     temp->data = data;
+     temp->left = temp->right = NULL;
+     return temp;
+     }
+
+     if (data < (node->data))
+     {
+          node->left = createtree(node->left, data);
+     }
+
+     else if (data > node->data)
+     {
+          node -> right = createtree(node->right, data);
+     }
+
+     return node;
+
+}
+
+
+void inorder(NODE *node)
+{
+
+     if(node != NULL)
+     {
+          inorder(node->left);
+          printf("%d\t", node->data);
+          inorder(node->right);
+     }
+}
+
+void preorder(NODE *node)
+{
+
+     if(node != NULL)
+     {
+          printf("%d\t", node->data);
+          preorder(node->left);
+          preorder(node->right);  
+     }
+}
+
+void postorder(NODE *node)
+{
+
+     if(node != NULL)
+     {
+          postorder(node->left);
+          postorder(node->right);
+          printf("%d\t", node->data);
+     }
+}
+
+
+int main()
+{
+     int data, ch, i, n;
+     NODE *root=NULL;
+     while (ch!=5)
+     {
+          printf("\n\n1.Insertion in Binary Search Tree");
+          printf("\n2.Inorder");
+          printf("\n3.Preorder");
+          printf("\n4.Postorder");
+          printf("\n5.Exit\n");
+          printf("\nEnter your Choice: ");
+
+          scanf("%d", &ch);
+
+          switch (ch)
+          {
+               case 1:   printf("\nEnter size of tree: " );
+                         scanf("%d", &n);
+                         printf("\nEnter the elements of tree)\n");
+
+                         for(i=0; i<n; i++)
+                         {
+                              scanf("%d", &data);
+                              root=createtree(root, data);
+                         }
+                         break;
+
+               case 2:   printf("\nInorder Traversal: \n");
+                         inorder(root);
+                         break;
+
+               case 3:   printf("\nPreorder Traversal: \n");
+                         preorder(root);          
+                         break;
+
+               case 4:   printf("\nPostorder Traversal: \n");
+                         postorder(root);    
+                         break;
+
+               case 5:   exit(0);
+
+               default:  printf("\nEnter valid choice\n");
+                         break;
+
+          }
+     }
+}
+_________________________________________________________________________________________________________________________
+Q1 B
+#include<stdio.h>
+//#include<conio.h>
+#include<stdlib.h>
+#include<math.h>
+int eval(int [],int,int);
+void main()
+{
+    int a[20]={0},i,deg1,s,x;
+    
+    printf("Enter degree of polynomial equation : \n");
+    scanf("%d",&deg1);
+    printf("\nEnter your equation (Coefficient only):\n");
+    for(i=deg1;i>=0;i--)
+    {
+        	scanf("%d",&a[i]);
+    }
+
+    // printing equation.
+
+    printf("\nEquation : ");
+    for(i=deg1;i>=0;i--)
+    {
+	        if(a[i]>=0)
+        	{
+            	printf("+");
+	        }
+	        else
+	        {
+	            printf("-");
+         }
+
+	        printf("%dx^%d",abs(a[i]),i);
+    }
+    printf("\nEnter value of x :\n");
+    scanf("%d",&x);
+    s=eval(a,deg1,x);
+    printf("Evaluation of polynomial :%d",s);
+}
+int eval(int a[],int n,int x)
+{
+    int sum=0,i;
+    for(i=0;i<=n;i++)
+    {
+        sum=sum+(a[i]*pow(x,i));
+    }
+    return sum;
+    
+}
+_______________________________________________________________________________________________________________________
+Q2
+HTML File:
+
+
+<html>
+<body>
+<form method="GET" action="ass1a1.php">
+Enter the String : <input type="text" name="inputStr"><br>
+<input type="submit" name="Submit">
+</form>
+</body>
+</html>
+
+
+PHP Function:
+
+
+NOTE: PHP function is saved as "ass1a1.php"
+
+<?php
+
+$string = $_GET['inputStr'];
+
+$vowels = array("a"=>0,"e"=>0,"i"=>0,"o"=>0,"u"=>0);
+
+for($i=0; $i<strlen($string); $i++) {
+if(strtolower($string[$i]) == 'a') {
+++$cnt;
+++$vowels['a'];
+}
+if(strtolower($string[$i]) == 'e') {
+++$cnt;
+++$vowels['e'];
+}
+if(strtolower($string[$i]) == 'i') {
+++$cnt;
+++$vowels['i'];
+}
+if(strtolower($string[$i]) == 'o') {
+++$cnt;
+++$vowels['o'];
+}
+if(strtolower($string[$i]) == 'u') {
+++$cnt;
+++$vowels['u'];
+}
+}
+
+echo "<h1>Total number of vowels found : ".$cnt."<h1>";
+echo "Occurence of 'a' : ".$vowels['a']."<br>";
+echo "Occurence of 'e' : ".$vowels['e']."<br>";
+echo "Occurence of 'i' : ".$vowels['i']."<br>";
+echo "Occurence of 'o' : ".$vowels['o']."<br>";
+echo "Occurence of 'u' : ".$vowels['u']."<br>";
+$str=strrev($string);
+$a=strlen($string);
+$f=0;
+for($j=0;$j<$a;$j++)
+{
+    if($str[$j]==$string[$j])
+    {
+        $f=0;
+    }
+    else
+    {
+        $f=1;
+        break;
+    }
+}
+if($f==0)
+{
+    echo"string is palindrome";
+}
+else
+{
+    echo"string is not palindrome";
+}
+?>
+___________________________________________________________________________________________________
+Q3
+
+nums = c(10, 20, 30, 40, 50, 60)
+print('Original vector:')
+print(nums)   
+print(paste("Maximum value of the said vector:",max(nums)))
+print(paste("Minimum value of the said vector:",min(nums)))
+=======================================================================================================
+
+
