@@ -1,0 +1,237 @@
+Q1 A
+
+#include <stdio.h>
+#include <stdlib.h>
+struct BST
+{
+
+     int data;
+     struct BST *left;
+     struct BST *right;
+
+};
+
+typedef struct BST NODE;
+NODE *node;
+NODE* createtree(NODE *node, int data)
+
+{
+
+     if (node == NULL)
+     {
+
+     NODE *temp;
+     temp= (NODE*)malloc(sizeof(NODE));
+     temp->data = data;
+     temp->left = temp->right = NULL;
+     return temp;
+     }
+
+     if (data < (node->data))
+     {
+          node->left = createtree(node->left, data);
+     }
+
+     else if (data > node->data)
+     {
+          node -> right = createtree(node->right, data);
+     }
+
+     return node;
+
+}
+
+void preorder(NODE *node)
+{
+
+     if(node != NULL)
+     {
+          printf("%d\t", node->data);
+          preorder(node->left);
+          preorder(node->right);  
+     }
+}
+
+void postorder(NODE *node)
+{
+
+     if(node != NULL)
+     {
+          postorder(node->left);
+          postorder(node->right);
+          printf("%d\t", node->data);
+     }
+}
+int main()
+{
+     int data, ch, i, n;
+     NODE *root=NULL;
+     while (ch!=4)
+     {
+          printf("\n\n1.Insertion in Binary Search Tree");
+          printf("\n2.Preorder");
+          printf("\n3.Postorder");
+          printf("\n4.Exit\n");
+          printf("\nEnter your Choice: ");
+
+          scanf("%d", &ch);
+
+          switch (ch)
+          {
+               case 1:   printf("\nEnter size of tree: " );
+                         scanf("%d", &n);
+                         printf("\nEnter the elements of tree)\n");
+
+                         for(i=0; i<n; i++)
+                         {
+                              scanf("%d", &data);
+                              root=createtree(root, data);
+                         }
+                         break;
+
+               case 2:   printf("\nPreorder Traversal: \n");
+                         preorder(root);          
+                         break;
+
+               case 3:   printf("\nPostorder Traversal: \n");
+                         postorder(root);    
+                         break;
+
+               case 4:   exit(0);
+
+               default:  printf("\nEnter valid choice\n");
+                         break;
+
+          }
+     }
+}
+_____________________________________________________________________________________________________________________________________________________
+Q1 B
+
+#include<stdio.h>
+void bubble_sort(int [],int);
+void main()
+{
+    int A[20],temp,i,j,n;
+    printf("Enter size of Array :\n");
+    scanf("%d",&n);
+    printf("\nEnter Array elements :\n");
+    for(i=0;i<n;i++)
+    {
+            scanf("%d",&A[i]);
+    }
+    bubble_sort(A,n);
+    
+    printf("\nSorted Array :\n");
+    for(i=0;i<n;i++)
+    {
+        printf("%d\n",A[i]);
+    }
+}
+void bubble_sort(int A[],int n)
+{
+    int i,j,temp;
+    for(i=1;i<n;i++)
+    {
+        for(j=0;j<n-i;j++)
+        {
+            if(A[j]>A[j+1])
+            {
+                temp=A[j];
+                A[j]=A[j+1];
+                A[j+1]=temp;
+            }
+        }
+    }
+}
+__________________________________________________________________________________________________________________________________________________
+
+Q2
+
+HTML File:
+
+<html>
+<head><title>   .html</title></head>
+<body bgcolor="violet" >
+<form action="ass1c2.php" method="post">
+<pre>
+                                                                                                                             
+        Enter first string ::<input type="text" name="str1">
+                                                                                                                             
+        Enter second string::<input type="text" name="str2">
+                                                                                                                             
+        Enter position::<input type='text' name="pos">
+                                                                                                                             
+        
+                        <input type="radio" name="ch" value=1>compare
+                                                                                                                             
+                        <input type="radio" name="ch" value=2>with datatype
+                                                                                                                             
+                        <input type="radio" name="ch" value=3>append.
+                                                                                                                             
+                        <input type="radio" name="ch" value=4>possition for reverse.
+                                                                                                                             
+                        <input type="submit" value="check">     <input type="reset" value="cancel">
+</pre>
+</form>
+</body>
+
+</html>
+
+PHP Function:
+
+NOTE: PHP function is saved as "ass1c2.php"
+
+<?php
+        $str1=$_POST['str1'];
+        $str2=$_POST['str2'];
+        $pos=$_POST['pos'];
+        $ch=$_POST['ch'];
+        echo"First string  :: $str1.<br><br>";
+                                                                                                                             
+        echo "Second string::$str2.<br><br>";
+                                                                                                                             
+        echo"position for reverse::$pos.<br><br>";
+                                                                                                                             
+        echo"choice is::$ch.<br><br>";
+                                                                                                                             
+        switch($ch)
+        {
+        case 1:
+                if($str1==$str2)
+                        echo"Both string are equal.<br>";
+                else
+                        echo"Both string are not equal.<br>";
+        break;
+        case 2:
+                if($str1===$str2)
+                        echo"Both are exat equal.<BR>";
+                else
+                        echo"Both are not equal.<BR>";
+        break;
+        case 3:
+                echo"After appending::";
+                echo "$str1"."$str2";
+                echo"<br>";
+        break;
+        case 4: $len=strlen($str1)-$pos;
+                $s=substr($str1,$pos,$len);
+                $str4=strrev($s);
+                echo "After reverse::$str4.<br>";
+        break;
+        }
+
+?>
+_______________________________________________________________________________________________________________________________________________
+
+Q3 
+
+marks = c(70, 95, 80, 74)
+barplot(marks,
+        main = "Comparing marks of 5 subjects",
+        xlab = "Marks",
+        ylab = "Subject",
+        names.arg = c("English", "Science", "Math.", "Hist."),
+        col = "darkred",
+        horiz = TRUE)
+=================================================================================================================================================

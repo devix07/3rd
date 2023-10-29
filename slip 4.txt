@@ -1,0 +1,315 @@
+Q1 A
+
+#include <stdio.h>
+#include <stdlib.h>
+struct BST
+{
+
+     int data;
+     struct BST *left;
+     struct BST *right;
+
+};
+
+typedef struct BST NODE;
+NODE *node;
+NODE* createtree(NODE *node, int data)
+
+{
+
+     if (node == NULL)
+     {
+
+     NODE *temp;
+     temp= (NODE*)malloc(sizeof(NODE));
+     temp->data = data;
+     temp->left = temp->right = NULL;
+     return temp;
+     }
+
+     if (data < (node->data))
+     {
+          node->left = createtree(node->left, data);
+     }
+
+     else if (data > node->data)
+     {
+          node -> right = createtree(node->right, data);
+     }
+
+     return node;
+
+}
+
+
+void inorder(NODE *node)
+{
+
+     if(node != NULL)
+     {
+          inorder(node->left);
+          printf("%d\t", node->data);
+          inorder(node->right);
+     }
+}
+
+void postorder(NODE *node)
+{
+
+     if(node != NULL)
+     {
+          postorder(node->left);
+          postorder(node->right);
+          printf("%d\t", node->data);
+     }
+}
+
+int main()
+{
+     int data, ch, i, n;
+     NODE *root=NULL;
+     while (ch!=4)
+     {
+          printf("\n\n1.Insertion in Binary Search Tree");
+          printf("\n2.Inorder");
+          printf("\n3.Postorder");
+          printf("\n4.Exit\n");
+          printf("\nEnter your Choice: ");
+
+          scanf("%d", &ch);
+
+          switch (ch)
+          {
+               case 1:   printf("\nEnter size of tree: " );
+                         scanf("%d", &n);
+                         printf("\nEnter the elements of tree)\n");
+
+                         for(i=0; i<n; i++)
+                         {
+                              scanf("%d", &data);
+                              root=createtree(root, data);
+                         }
+                         break;
+
+               case 2:   printf("\nInorder Traversal: \n");
+                         inorder(root);
+                         break;
+
+               case 3:   printf("\nPostorder Traversal: \n");
+                         postorder(root);    
+                         break;
+
+               case 4:   exit(0);
+
+               default:  printf("\nEnter valid choice\n");
+                         break;
+
+          }
+     }
+}
+____________________________________________________________________________________________________________________________________________________
+
+Q1 B 
+
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+void main()
+{
+    int a[20]={0},b[20]={0},c[20]={0},i,j,deg1,deg2,k;
+    
+
+    // 1st equation.
+
+    printf("Enter degree of 1st polynomial equation : \n");
+    scanf("%d",&deg1);
+    printf("\nEnter your 1st equation (Coefficient only):\n");
+    for(i=deg1;i>=0;i--)
+    {
+	scanf("%d",&a[i]);
+    }
+
+    // 2nd equation.
+
+    printf("\nEnter degree of 2nd polynomial equation : \n");
+    scanf("%d",&deg2);
+    printf("\nEnter your 2nd equation (Coefficient only):\n");
+    for(j=deg2;j>=0;j--)
+    {
+	scanf("%d",&b[j]);
+    }
+
+    // printing equations.
+
+    printf("\n1st equation : ");
+    for(i=deg1;i>=0;i--)
+    {
+	if(a[i]>=0)
+	{
+	printf("+");
+	}
+	else
+	{
+	    printf("-");
+	}
+
+	printf("%dx^%d",abs(a[i]),i);
+    }
+
+
+    printf("\n\n2nd equation : ");
+    for(j=deg2;j>=0;j--)
+    {
+	if(b[j]>=0)
+	{
+	printf("+");
+	}
+	else
+	{
+	    printf("-");
+	}
+
+	printf("%dx^%d",abs(b[j]),j);
+    }
+
+    // addition of two equations
+    i=j=k=0;
+    if(deg1>deg2)
+    {
+	while(i<=deg1)
+	{
+		c[k]=a[i]+b[j];
+		i++;
+		j++;
+		k++;
+	}
+
+	printf("\n\nResult of addition : ");
+	for(k=deg1;k>=0;k--)
+	{
+		if(c[k]>=0)
+		{
+			printf("+");
+		}
+		else
+			printf("-");
+
+	printf("%dx^%d",abs(c[k]),k);
+	}
+    }
+    else
+    {
+	while(i<=deg2)
+	{
+		c[k]=b[j]+a[i];
+		i++;
+		j++;
+		k++;
+	}
+
+	printf("\n\nResult of addition : ");
+	for(k=deg2;k>=0;k--)
+	{
+		if(c[k]>=0)
+		{
+			printf("+");
+		}
+		else
+			printf("-");
+
+	printf("%dx^%d",abs(c[k]),k);
+	}
+    }
+    
+}
+______________________________________________________________________________________________________________________________________
+
+Q2
+
+HTML File:
+
+<html>
+<body>
+<form action='ass1b2' method=post>
+<pre>
+Enter first string  :<input type='text' name='str1'><br>
+Enter second string  :<input type='text' name='str2'><br>
+Enter string for replace:<input type='text' name='str3'><br></h2>
+                                                                                                                             
+                        <input type='radio' name="ch" value=1>Occurence.
+                        <input type='radio' name="ch" value=2>Replace.
+                        <input type='radio' name="ch" value=3>split.                                                                                                   
+                        <input type=submit value=ok>    <input type=reset value=cancel>
+</pre>
+</form>
+</body>
+
+</html>
+
+PHP Function:
+
+NOTE: PHP function is saved as "ass1b2.php"
+
+<?php
+        $str1=$_POST['str1'];
+        $str2=$_POST['str2'];
+        $str3=$_POST['str3'];
+        $ch=$_POST['ch'];
+        echo"First string=$str1.<br>";
+        echo"Second String=$str2.<br>";
+        echo"String for replace=$str3.<br>";
+        if(strlen($str1)>strlen($str2))
+        {
+                switch($ch)
+                {
+                case 1: $pos=strpos($str1,$str2);
+                        if($pos!=0)
+                                echo"String '$str2' Not present at the start of  '$str1'.<br>";
+                        else
+                                echo"String '$str2' Present at the strat of '$str1'.<br>";
+                break;
+                case 2:
+                        $str4=str_replace($str2,$str3,$str1);
+                        printf("\nAfter replacing string::");
+                        echo $str4;
+                break;
+                case 3: $s=preg_split("//",$str1);
+                        foreach($s as $v) echo "\t$v <br>";
+                break;
+                }
+        }
+        else
+        {
+        switch($ch)
+                {
+                case 1:$pos=strpos($str2,$str1);
+                        if($pos!=0)
+                                echo"String '$str1' Not present at the start of  '$str2'.<br>";
+                        else
+                                echo"String '$str1' Present at the start of '$str2'.<br>";
+                break;
+                case 2: $str4=str_replace($str1,$str3,$str2);
+                                echo "After replacing string::$str4<br>";
+                break;
+                case 3:
+                        echo"After splitting the string::<br>";
+                        $s=preg_split("//",$str2);
+                                foreach($s as $v) echo "\t$v <br>";
+                }
+        }
+
+?>
+_________________________________________________________________________________________________________________________________________________
+
+Q3
+
+print("First 10 letters in lower case:")
+t = head(letters, 10)
+print(t)
+print("Last 10 letters in upper case:")
+t = tail(LETTERS, 10)
+print(t)
+print("Letters between 22nd to 24th letters in upper case:")
+e = tail(LETTERS[22:24])
+print(e)
+==================================================================================================================================================
