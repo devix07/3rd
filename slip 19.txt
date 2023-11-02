@@ -1,0 +1,203 @@
+Q1 A
+
+
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+int top=-1, i;
+char stack[50];char array1[50];char array2[50];
+
+void reverse();
+void main()
+{
+    printf("Enter string:\n");
+    fgets(array1,sizeof(array1),stdin);
+
+    for(i=0;array1[i]!='\0';i++)
+    {
+        top=top+1;
+        stack[top]=array1[i];
+    }
+    reverse();
+
+    printf("\n\nReversed String :\n");
+    puts(array2);
+}
+
+void reverse()
+{
+    for(i=0;top>0;i++)
+    {
+        top=top-1;
+        array2[i]=stack[top];
+    }
+}
+
+
+___________________________________________________________________________________________________________________________________________-
+
+
+Q1 B
+
+
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node * next;
+};
+struct node* head=NULL;
+
+struct node *cn()
+{
+    struct node* n;
+    n=(struct node *)malloc(sizeof(struct node));
+    return(n);
+}
+
+void createnode()   //Function to create Linked list.
+{
+    int i,n,x;
+    struct node * temp,*newnode;
+    printf("Enter size of linked list :\n");
+    scanf("%d",&n);
+    printf("Enter elements of linked list :\n");
+    for(i=1;i<=n;i++)
+    {
+        scanf("%d",&x);
+        if(head==NULL)  //checking in linked list is empty
+        {
+            head=cn();
+            head->data=x;
+            head->next=NULL;
+            temp=head;
+        }
+        else
+        { 
+            newnode=cn();
+            newnode->data=x;
+            newnode->next=NULL;
+            temp->next=newnode;
+            temp=newnode;
+        }
+    }
+}
+void display()
+{
+    struct node * temp;
+    temp=head;
+    if(head==NULL)
+    {
+        printf("List is empty\n");
+    }
+    else
+    {
+        while(temp->next!=NULL || temp!=NULL)
+        {
+            printf("%d\n",temp->data);
+            temp=temp->next->next;
+        }
+    }
+}
+
+void main()
+{
+    createnode();
+    printf("Displaying alternative nodes.\n");
+    display();
+}
+
+___________________________________________________________________________________________________________________________________________-
+
+Q2
+
+
+<html>
+<body>
+<SCRIPT>
+function GetCookie (name)
+{
+            var arg = name + "=";
+            var alen = arg.length;
+            var clen = document.cookie.length;
+            var i = 0;
+            while (i < clen)
+            {
+                        var j = i + alen;
+                        if (document.cookie.substring(i, j) == arg)
+                        return getCookieVal (j);
+                        i = document.cookie.indexOf(" ", i) + 1;
+                        if (i == 0) break;
+            }
+            return null;
+}
+function SetCookie (name, value)
+{
+            var argv = SetCookie.arguments;
+            var argc = SetCookie.arguments.length;
+            var expires = (argc > 2) ? argv[2] : null;
+            var path = (argc > 3) ? argv[3] : null;
+            var domain = (argc > 4) ? argv[4] : null;
+            var secure = (argc > 5) ? argv[5] : false;
+            document.cookie = name + "=" + escape (value) +
+            ((expires == null) ? "" : ("; expires=" + expires.toGMTString())) +
+            ((path == null) ? "" : ("; path=" + path)) +
+            ((domain == null) ? "" : ("; domain=" + domain)) +
+            ((secure == true) ? "; secure" : "");
+}
+function DeleteCookie (name)
+{
+            var exp = new Date();
+            exp.setTime (exp.getTime() - 1);
+            var cval = GetCookie (name);
+            document.cookie = name + "=" + cval + "; expires=" + exp.toGMTString();
+}
+var expDays = 30;
+var exp = new Date();
+exp.setTime(exp.getTime() + (expDays*24*60*60*1000));
+
+function amt()
+{
+            var count = GetCookie('count')
+            if(count == null)
+            {
+                        SetCookie('count','1')
+                        return 1
+            }
+            else
+            {
+                        var newcount = parseInt(count) + 1;
+                        DeleteCookie('count')
+                        SetCookie('count',newcount,exp)
+                        return count
+            }
+}
+function getCookieVal(offset)
+{
+            var endstr = document.cookie.indexOf (";", offset);
+            if (endstr == -1)
+            endstr = document.cookie.length;
+            return unescape(document.cookie.substring(offset, endstr));
+}
+</SCRIPT>
+<SCRIPT>
+            document.write("You've been here <b>" + amt() + "</b> times accessed webpage.")
+</SCRIPT>
+</body>
+</html>
+
+
+___________________________________________________________________________________________________________________________________________-
+
+
+Q3
+
+
+#print("Empty plot:")
+plot.new()
+#print("Empty plot specify the axes limits of the graphic:")
+plot(1, type="n", xlab="", ylab="", xlim=c(0, 20), ylim=c(0, 20))
+
+
+================================================================================================================================================

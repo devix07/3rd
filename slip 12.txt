@@ -1,0 +1,257 @@
+Q1 A
+
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int n,g[10][10];
+
+void inoutdegree()
+{ 
+    int i,j,id=0,od=0;
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<n;j++)
+        {
+            od+=g[i][j];
+            id+=g[j][i];
+        }
+        printf("v%d indegree =%d \t Outdegree= %d\n",i,id,od);
+    }
+}
+
+int main()
+{ 
+    int i,j,cnt=0;
+    printf("How many vertices:\n");
+    scanf("%d",&n);
+    printf("Enter matrix elements:\n");
+
+    for(i=0;i<n;i++)
+    { 
+        for(j=0;j<n;j++)
+        { 
+            scanf("%d",&g[i][j]);
+        }
+    }
+    printf("\nAdjacency matrix Is:\n");
+    for(i=0;i<n;i++)
+    { 
+        for(j=0;j<n;j++)
+        { 
+            if(g[i][j]!=g[j][i])
+            cnt++;
+            printf("%d\t",g[i][j]);
+        }
+        printf("\n");
+    }
+
+    if(cnt!=0)
+    {
+        printf("\nGiven graph is Directed\n\n");
+        inoutdegree();
+    }
+    else
+    {
+        printf("Graph is undirected\n\n");
+    }
+    return 0;
+}
+
+
+________________________________________________________________________________________
+
+Q1 B
+
+
+#include<stdio.h>
+#include<conio.h>
+void selection_sort(int [],int);
+void main()
+{
+    int A[20],i,j,min,n,temp;
+    printf("Enter size of array :\n");
+    scanf("%d",&n);
+    printf("Enter array elements :\n");
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&A[i]);
+    }
+    selection_sort(A,n);
+   
+    printf("Sorted Array :\n");
+    for(i=0;i<n;i++)
+    {
+        printf("%d\n",A[i]);
+    }
+}
+void selection_sort(int A[],int n)
+{
+    int i,min,j,temp;
+    for(i=0;i<n;i++)
+    {
+        min=i;
+        for(j=i+1;j<n;j++)
+        {
+            if(A[j]<A[min])
+            {
+                min=j;
+            }
+        }
+        temp=A[i];
+        A[i]=A[min];
+        A[min]=temp;
+    }
+}
+
+
+________________________________________________________________________________________
+
+Q2
+
+<!DOCTYPE html>
+
+<html>
+
+<body>
+
+ 
+
+<?php
+
+class Account {
+
+  public $acc_no;
+
+  public $acc_name;
+
+  public function __construct($acc_name, $acc_no) {
+
+    $this->acc_name = $acc_name;
+
+    $this->acc_no = $acc_no;
+
+  }
+
+  public function intro() {
+
+    echo "The Account name {$this->acc_name} and Account No is {$this->acc_no}.";
+
+  }
+
+}
+
+ 
+
+class saveing_acc extends Account {
+
+  public $blance;
+
+  public $min_amount;
+
+  public function __construct($acc_name, $acc_no, $blance,$min_amount) {
+
+    $this->acc_name = $acc_name;
+
+
+ 
+
+    $this->acc_no = $acc_no;
+
+    $this->blance = $blance;
+
+              $this->min_amount = $min_amount;
+
+  }
+
+  public function intro() {
+
+              echo"<table border='2'>";
+
+              echo"<tr><td>Account Name</td><td>Account no</td><td>balance</td><td>min_balance</td></tr>";
+
+             
+
+    echo "<tr><td>{$this->acc_name}</td>";
+
+            echo "<td>{$this->acc_no}</td>"  ;
+
+            echo"<td>{$this->blance}</td>";
+
+            echo"<td>{$this->min_amount}</td></tr>";
+
+           
+
+  }
+
+}
+
+ 
+
+class current_acc extends Account {
+
+  public $blan;
+
+  public $min_amt;
+
+  public function __construct($acc_name, $acc_no, $blan,$min_amount) {
+
+    $this->acc_name = $acc_name;
+
+    $this->acc_no = $acc_no;
+
+    $this->blan = $blan;
+
+              $this->min_amount = $min_amount;
+
+  }
+
+  public function intro() {
+
+             
+
+    echo " <tr><td>{$this->acc_name}</td>";
+
+            echo "<td>{$this->acc_no}</td>" ;
+
+            echo "<td>{$this->blan}</td>";
+
+            echo "<td>{$this->min_amount}</td></tr> ";
+
+           
+
+  }
+
+}
+
+echo"</table>";
+
+$saveing_acc= new saveing_acc("Ravindra", 1111, 5000,1000);
+
+$saveing_acc->intro();
+
+$current_acc=new current_acc("Kiran",2222,100000,1000);
+
+$current_acc->intro();
+
+?>
+
+ 
+
+</body>
+
+</html>
+
+_______________________________________________________________________________________________
+
+Q3
+
+number <- as.integer(readline(prompt = "Please Enter a Number for Table"))
+
+for( t in 1:10)
+{
+  print ( paste ( number, '*', t, '=', number * t))
+}
+
+
+============================================================================================

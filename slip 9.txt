@@ -1,0 +1,249 @@
+Q1 A
+
+
+#include<stdio.h>
+#include<ctype.h>
+int stack[20];
+int top = -1;
+
+void push(int x)
+{
+    stack[++top] = x;
+}
+
+int pop()
+{
+    return stack[top--];
+}
+
+int main()
+{
+    char exp[20];
+    char *e;
+    int n1,n2,n3,num;
+    printf("Enter the expression :: ");
+    scanf("%s",exp);
+    e = exp;
+    while(*e != '\0')
+    {
+        if(isdigit(*e))
+        {
+            num = *e - 48;
+            push(num);
+        }
+        else
+        {
+            n1 = pop();
+            n2 = pop();
+            switch(*e)
+            {
+            case '+':
+            {
+                n3 = n1 + n2;
+                break;
+            }
+            case '-':
+            {
+                n3 = n2 - n1;
+                break;
+            }
+            case '*':
+            {
+                n3 = n1 * n2;
+                break;
+            }
+            case '/':
+            {
+                n3 = n2 / n1;
+                break;
+            }
+            }
+            push(n3);
+        }
+        e++;
+    }
+    printf("\nThe result of expression %s  =  %d\n\n",exp,pop());
+    return 0;
+}
+
+
+_________________________________________________________________________________________________
+
+Q1 B
+
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node
+{
+    int data;
+    struct node *next;
+};
+struct node *head=NULL;
+
+struct node *cn()
+{
+    struct node *n;
+    n=(struct node *)malloc(sizeof(struct node));
+    return(n);
+}
+
+void createnode(int n)   //Function to create Linked list.
+{
+    int i,x;
+    struct node * temp,*newnode;
+    printf("Enter elements of linked list :\n");
+    for(i=1;i<=n;i++)
+    {
+        scanf("%d",&x);
+        if(head==NULL)  //checking in linked list is empty
+        {
+            head=cn();
+            head->data=x;
+            head->next=NULL;
+            temp=head;
+        }
+        else
+        { 
+            newnode=cn();
+            newnode->data=x;
+            newnode->next=NULL;
+            temp->next=newnode;
+            temp=newnode;
+        }
+    }
+}
+
+
+void display()
+{
+    struct node *temp;
+    temp=head;
+    while (temp!=NULL)
+    {
+        printf("%d\n",temp->data);
+        temp=temp->next;
+    }
+    
+}
+
+void reverselist()
+{
+    struct node *prev,*cur;
+    prev=head;
+    head=head->next;
+    cur=head;
+    prev->next=NULL;
+
+    while (head!=NULL)
+    {
+        head=head->next;
+        cur->next=prev;
+        prev=cur;
+        cur=head;
+    }
+
+    head=prev;
+    
+}
+
+void main()
+{
+    int n;
+    printf("Enter size of Linked list\n");
+    scanf("%d",&n);
+    createnode(n);
+    printf("Displaying list:\n");
+    display();
+    printf("\nReverse list is :\n");
+    reverselist();
+    display();
+}
+
+__________________________________________________________________________________________________
+
+
+Q2
+
+
+HTML File:
+
+
+<html>
+<head><title>A4A1</title></head>
+
+<body bgcolor="GOLD" font type='San Sarif'>
+<center><h2>Implementation of Interface and Class</h2></center>
+<br/>
+<hr>
+
+<form action="a4a1.php" method='POST'>
+
+<h3>Enter radius        :<input type='text' name='rad'><br/></h3>
+<h3>Enter height        :<input type='text' name='hit'><br/></h3>
+<br/>
+<br/>
+<pre><input type='submit' name='submit' value='Area.'>  <input type='reset' name='reset' value='reset'>
+</form>
+</body>
+</html>
+
+PHP Function:
+
+
+NOTE: PHP function is saved as "a4a1.php"
+
+<?php
+
+$r=$_POST['rad'];
+$h=$_POST['hit'];
+
+define('PPI','3.1412');
+
+Interface fun
+{
+
+        function area($r,$h);
+        function volume($r,$h);
+}
+
+
+class cylinder implements fun
+{
+
+        function area($r,$h)
+        {
+         $area=(2*PPI*$r*($r+$h));
+         echo "<center><h3>The area of cylinder is:     $area</font></center></h3>";
+        }
+
+        function volume($r,$h)
+        {
+         $v=(PPI*$r*$r*$h);
+         echo "<center><h3>The volume of cylinder is:     $v</font></center></h3>";
+        }
+}
+
+
+$o=new cylinder;
+$o->area($r,$h);
+$o->volume($r,$h);
+
+?>
+
+__________________________________________________________________________________________________
+
+Q3
+
+
+v = c("a", "b", "a", "c", "b")
+print("Original vector:")
+print(v)
+f = factor(v)
+print("Factor of the said vector:")
+print(f)
+levels(f)[1] = "e"
+print(f)
+
+
+=======================================================================================================

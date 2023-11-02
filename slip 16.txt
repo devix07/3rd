@@ -1,0 +1,232 @@
+Q1 A
+
+
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+int top=-1, i;
+char stack[50];char array1[50];char array2[50];
+
+void reverse();
+void main()
+{
+    printf("Enter string:\n");
+    fgets(array1,sizeof(array1),stdin);
+
+    for(i=0;array1[i]!='\0';i++)
+    {
+        top=top+1;
+        stack[top]=array1[i];
+    }
+    reverse();
+
+    printf("\n\nReversed String :\n");
+    puts(array2);
+}
+
+void reverse()
+{
+    for(i=0;top>0;i++)
+    {
+        top=top-1;
+        array2[i]=stack[top];
+    }
+}
+
+___________________________________________________________________________________________________________________________________________-
+
+
+Q1 B
+
+
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node * next;
+};
+struct node* head=NULL;
+
+struct node *cn()
+{
+    struct node* n;
+    n=(struct node *)malloc(sizeof(struct node));
+    return(n);
+}
+
+void createnode(int n)   //Function to create Linked list.
+{
+    int i,x;
+    struct node * temp,*newnode;
+    printf("Enter elements of linked list :\n");
+    for(i=1;i<=n;i++)
+    {
+        scanf("%d",&x);
+        if(head==NULL)  //checking in linked list is empty
+        {
+            head=cn();
+            head->data=x;
+            head->next=NULL;
+            temp=head;
+        }
+        else
+        { 
+            newnode=cn();
+            newnode->data=x;
+            newnode->next=NULL;
+            temp->next=newnode;
+            temp=newnode;
+        }
+    }
+}
+
+
+void display()     //Function to traverse Linked list.
+{
+    struct node * temp;
+    temp=head;
+    while(temp!=NULL)
+    {
+        printf("%d\n",temp->data);
+        temp=temp->next;
+    }
+}
+
+
+
+
+void search(int key)   //Function to delete a node from Linked list.
+{
+    struct node * temp;
+    int i=1,flag=0;
+    temp=head;
+    if(head==NULL)
+    {
+        printf("Linked list is empty. \n");
+    }
+    else 
+    {
+        while(temp!=NULL)
+        {
+            if(key==temp->data)
+            {
+                flag=1;
+                break;
+            }
+            temp=temp->next;
+            i++;
+            
+        }
+
+    }
+    if(flag==0)
+    {
+        printf("Elemet not found.\n");
+        
+    }
+    else
+    {
+        printf("Element found at position :%d",i);
+    }
+}
+
+
+void main()
+{
+    int n,key;
+    printf("Enter size of Linked list :\n");
+    scanf("%d",&n);
+    createnode(n);
+    printf("\n\nLinked List :\n");
+    display();
+    printf("\nEnter element you want to search :\n");
+    scanf("%d",&key);
+    search(key);
+}
+
+___________________________________________________________________________________________________________________________________________-
+
+
+
+Q2
+
+
+<!DOCTYPE html>
+
+<head>
+	<title>PHP - Calculate Electricity Bill</title>
+</head>
+
+<?php
+$result_str = $result = '';
+if (isset($_POST['unit-submit'])) {
+    $units = $_POST['units'];
+    if (!empty($units)) {
+        $result = calculate_bill($units);
+        $result_str = 'Total amount of ' . $units . ' - ' . $result;
+    }
+}
+/**
+ * To calculate electricity bill as per unit cost
+ */
+function calculate_bill($units) {
+    $unit_cost_first = 3.50;
+    $unit_cost_second = 4.00;
+    $unit_cost_third = 5.20;
+    $unit_cost_fourth = 6.50;
+
+    if($units <= 50) {
+        $bill = $units * $unit_cost_first;
+    }
+    else if($units > 50 && $units <= 100) {
+        $temp = 50 * $unit_cost_first;
+        $remaining_units = $units - 50;
+        $bill = $temp + ($remaining_units * $unit_cost_second);
+    }
+    else if($units > 100 && $units <= 200) {
+        $temp = (50 * 3.5) + (100 * $unit_cost_second);
+        $remaining_units = $units - 150;
+        $bill = $temp + ($remaining_units * $unit_cost_third);
+    }
+    else {
+        $temp = (50 * 3.5) + (100 * $unit_cost_second) + (100 * $unit_cost_third);
+        $remaining_units = $units - 250;
+        $bill = $temp + ($remaining_units * $unit_cost_fourth);
+    }
+    return number_format((float)$bill, 2, '.', '');
+}
+
+?>
+
+<body>
+	<div id="page-wrap">
+		<h1>Php - Calculate Electricity Bill</h1>
+
+		<form action="" method="post" id="quiz-form">
+            	<input type="number" name="units" id="units" placeholder="Please enter no. of Units" />
+            	<input type="submit" name="unit-submit" id="unit-submit" value="Submit" />
+		</form>
+
+		<div>
+		    <?php echo '<br />' . $result_str; ?>
+		</div>
+	</div>
+</body>
+</html>
+
+___________________________________________________________________________________________________________________________________________-
+
+
+
+Q3
+
+
+dim(airquality)
+colnames(airquality)
+subset(mtcars[,1],mtcars[,1]>15.0)
+head(subset(airquality, Ozone>28|Temp>70))
+subset(airquality,Ozone>100,select=c(Ozone,Temp,Month,Day))
+
+
+================================================================================================================================================

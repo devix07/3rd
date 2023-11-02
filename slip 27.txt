@@ -1,0 +1,263 @@
+Q1 A
+
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+# define maxsize 5 
+
+void insert();
+void delete();
+void display();
+
+int front=-1,rear=-1;
+int queue[maxsize];
+
+void main()
+{
+    int choice;
+    while(choice!=4)
+    {
+        printf("\n1. Insert an element");
+        printf("\n2. Delete an element");
+        printf("\n3. Display Queue");
+        printf("\n4. Exit\n");
+
+        printf("\nEnter your choice :\n");
+        scanf("%d",&choice);
+
+        switch(choice)
+        {
+            case 1: insert();
+                    break;
+            case 2: delete();
+                    break;
+            case 3: display();
+                    break;
+            case 4: exit(0);
+
+            default:printf("Enter valid choice\n");
+        }
+    }
+}
+
+void insert()
+{
+    int item;
+    printf("\nEnter element :\n");
+    scanf("%d",&item);
+
+    if((rear+1)%maxsize==front)
+    {
+        printf("\nOverflow");
+        return ;
+    }
+    else if((front==-1)&&(rear==-1))
+    {
+        front=rear=0;
+    }
+    else if((rear==maxsize-1)&&(front!=0))
+    {
+        rear=0;
+    }
+    else
+    {
+        rear=(rear+1)%maxsize;
+    }
+
+    queue[rear]=item;
+    printf("\nElement inserted successfully\n\n");
+}
+
+void delete()
+{
+    int item;
+    if((front==-1)&&(rear==-1))
+    {
+        printf("Underflow");
+        return ;
+    }
+    else if(front==rear)
+    {
+        front=-1;
+        rear=-1;
+    }
+    else
+    {
+        front=front+1;
+    }
+    printf("Element popped successfully\n");
+}
+
+void display()
+{
+    int i;
+    if(front==-1)
+    {
+        printf("\n Circular queue is empty.\n");
+    }
+    else
+    {
+        i=front;
+        printf("Circular queue elements are :\n");
+        if(front<=rear)
+        {
+            while(i<=rear)
+            {
+                printf("%d \n",queue[i]);
+                i++;
+            }
+        }
+        else
+        {
+            while(i<=maxsize-1)
+            {
+                printf("%d \n",queue[i]);
+                i++;
+            }
+            i=0;
+            while(i<=rear)
+            {
+                printf("%d \n",queue[i]);
+                i++;
+            }
+        }
+    }
+}
+
+
+___________________________________________________________________________________________________________________________________________-
+
+
+Q1 B
+
+
+#include<stdlib.h>
+#include<stdio.h>
+struct node
+{
+    int data;
+    struct node * prev,*next;
+};
+struct node *head=NULL;
+
+struct node * cn()
+{
+    struct node * n;
+    n=(struct node *)malloc(sizeof(struct node));
+    return (n);
+}
+
+void createnode()
+{
+    int i,n,x;
+    struct node *temp,*newnode;
+    printf("Enter size of linked list:\n");
+    scanf("%d",&n);
+    printf("Enter elements of linked list:\n");
+    for(i=1;i<=n;i++)
+    {
+        scanf("%d",&x);
+        if(head==NULL)
+        {
+            head=cn();
+            head->data=x;
+            head->next=NULL;
+            head->prev=NULL;
+            temp=head;
+        }
+        else
+        {
+            newnode=cn();
+            newnode->data=x;
+            newnode->prev=temp;
+            newnode->next=NULL;
+            temp->next=newnode;
+            head->prev=NULL;
+            temp=newnode;
+        }
+        
+    }
+
+}
+
+
+void display()
+{
+    struct node * temp;
+    printf("\n");
+    if(head==NULL)
+    {
+        printf("List is empt.\n");   
+    }
+    else
+    {
+        temp=head;
+        while(temp->next!=NULL)
+        {
+            printf("%d\n",temp->data);
+            temp=temp->next;
+        }
+        printf("%d\n",temp->data);
+    }
+}
+     
+
+int main()
+{
+    int choice,a=0;
+    while(choice!=3)
+    {
+        printf("\n\n1. Create Linked list.\n");
+        printf("2. Display.\n");
+        printf("3. Exit.\n\n");
+        scanf("%d",&choice);
+    
+        switch(choice)
+        {
+            case 1: if(a==1)
+                    {
+                        printf("You have already created a Linked list.\n");
+                    }
+                 else
+                    {   createnode();
+                        a++;
+                    }
+                    break;
+
+            case 2: display();
+                    break;
+
+            case 4: exit(0);
+
+            defalut: printf("Enter a valid choice\n");
+        }
+    }
+}
+
+___________________________________________________________________________________________________________________________________________-
+
+
+Q2
+
+___________________________________________________________________________________________________________________________________________-
+
+Q3
+
+
+b=1111
+decimal=0
+r=0
+base=1
+while(b>0){
+  r=b%%10
+  decimal=decimal+r*base
+  b=b/10
+  b=as.integer(b)
+  base=base*2
+}
+base=as.integer(base)
+print(decimal)
+
+
+================================================================================================================================================

@@ -1,0 +1,444 @@
+Q1 A
+
+
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node * next;
+};
+struct node* head=NULL;
+
+struct node *cn()
+{
+    struct node* n;
+    n=(struct node *)malloc(sizeof(struct node));
+    return(n);
+}
+
+void createnode()   //Function to create Linked list.
+{
+    int i,n,x;
+    struct node * temp,*newnode;
+    printf("Enter size of linked list :\n");
+    scanf("%d",&n);
+    printf("Enter elements of linked list :\n");
+    for(i=1;i<=n;i++)
+    {
+        scanf("%d",&x);
+        if(head==NULL)  //checking in linked list is empty
+        {
+            head=cn();
+            head->data=x;
+            head->next=NULL;
+            temp=head;
+        }
+        else
+        { 
+            newnode=cn();
+            newnode->data=x;
+            newnode->next=NULL;
+            temp->next=newnode;
+            temp=newnode;
+        }
+    }
+}
+
+
+void traverse()     //Function to traverse Linked list.
+{
+    struct node * temp;
+    temp=head;
+    while(temp!=NULL)
+    {
+        printf("%d\n",temp->data);
+        temp=temp->next;
+    }
+}
+
+
+void insertnode()   //Function to insert node in Linked list.
+{
+    struct node * temp,*newnode;
+    int pos,i=1,x;
+
+    printf("Enter position for insertion of new node :\n");
+    scanf("%d",&pos);
+
+    printf("Enter value for that node :\n");
+    scanf("%d",&x);
+    newnode=cn();
+    newnode->data=x;
+    newnode->next=NULL;
+    temp=head;
+    
+    
+
+    if(head==NULL)  //checking in linked list is empty
+    {
+        head=newnode;
+        head->next=NULL;
+        
+    }
+
+
+    if(pos==1)
+    {
+        newnode->next=head;
+        head=newnode;
+    }
+    else
+
+    {
+        while((i<pos-1)&&(temp!=NULL))
+        {
+            temp=temp->next;
+            i++;
+        }
+
+        if(temp==NULL)
+        {
+            printf("Position out of bound.\n");
+        }
+        else
+        {
+                newnode->next=temp->next;
+                temp->next=newnode;
+        }
+    }
+    printf("node inserted\n");
+}
+
+
+void search()   //Function to delete a node from Linked list.
+{
+    struct node * temp;
+    int key,i=1,flag=0;
+
+    printf("Enter element you want to search :\n");
+    scanf("%d",&key);
+    temp=head;
+    if(head==NULL)
+    {
+        printf("Linked list is empty. \n");
+    }
+    else 
+    {
+        while(temp!=NULL)
+        {
+            if(key==temp->data)
+            {
+                flag=1;
+                break;
+            }
+            temp=temp->next;
+            i++;
+            
+        }
+
+    }
+    if(flag==0)
+    {
+        printf("Elemet not found.\n");
+        
+    }
+    else
+    {
+        printf("Element found at position :%d",i);
+    }
+}
+
+
+void main()
+{
+    int choice,a=0;
+    while(choice!=5)
+    {
+        printf("\n\n1. Create Linked list.\n");
+        printf("2. Display Linked list.\n");
+        printf("3. Insert node at any position.\n");
+        printf("4. Search.\n");
+        printf("5. Exit\n\n");
+        scanf("%d",&choice);
+        printf("\n");
+        switch(choice)
+        {
+            case 1: if(a==1)
+                    {
+                        printf("You have already created a Linked list.");
+                    }
+                    else
+                    {   createnode();
+                        a++;
+                    }
+                    break;
+
+            case 2: traverse();
+                    break;
+
+            case 3: insertnode();
+                    break;
+
+            case 4: search();
+                    break;
+
+            case 5: exit(0);
+
+            defalut: printf("Enter a valid choice\n");
+        }
+    }
+}
+
+
+___________________________________________________________________________________________________
+
+Q1 B
+
+
+
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node *next; 
+};
+struct node *front=NULL;
+struct node *rear=NULL;
+
+struct node *cn()
+{
+    struct node *n;
+    n=(struct node *)malloc(sizeof(struct node));
+    return(n);
+}
+
+void createqueue()
+{
+    int n,x,i;
+    struct node *newnode;
+    printf("Enter size of queue :\n");
+    scanf("%d",&n);
+    printf("Enter elements of queue :\n");;
+    for(i=1;i<=n;i++)
+    {
+        scanf("%d",&x);
+        if(front==NULL)
+        {
+            newnode=cn();
+            newnode->data=x;
+            newnode->next=NULL;
+            front=newnode;
+            rear=newnode;
+        }
+        else
+        {
+            newnode=cn();
+            newnode->data=x;
+            rear->next=newnode;
+            newnode->next=NULL;
+            rear=newnode;
+
+        }
+    }
+}
+
+void insert()
+{
+    struct node *newnode;
+    int x;
+    printf("Enter element:\n");
+    scanf("%d",&x);
+    newnode=cn();
+    newnode->data=x;
+    newnode->next=NULL;
+    if(front==NULL)
+    {
+        front=newnode;
+        rear=newnode;
+    }
+    else
+    {
+        rear->next=newnode;
+        rear=newnode;
+    }
+    printf("Element inserted successfully");
+}
+
+void delete()
+{
+    struct node *temp;
+    if(front==NULL)
+    {
+        printf("Queue is empty.\n");
+    }
+    else
+    {
+        temp=front;
+        front=front->next;
+        temp->next=NULL;
+        free(temp);
+    }
+    printf("Element deleted successfully");
+}
+
+void display()
+{
+    struct node *temp;
+    temp=front;
+    printf("\n");
+    while(temp->next!=NULL)
+    {
+        printf("%d\n",temp->data);
+        temp=temp->next;
+    }
+    printf("%d\n",temp->data);
+}
+
+
+void main()
+{
+    int choice,a=0;
+    while(choice!=5)
+    {
+        printf("\n\n1. Create queue\n");
+        printf("2. Insert\n");
+        printf("3. Delete\n");
+        printf("4. Display\n");
+        printf("5. Exit\n\n");
+        scanf("%d",&choice);
+
+        switch(choice)
+        {
+            case 1: if(a==1)
+                    {
+                        printf("You have already create queue.\n");
+                    }
+                    else
+                    {
+                        createqueue();
+                        a=1;
+                    }
+                    break;
+
+            case 2: insert();
+                    break;
+            
+            case 3: delete();
+                    break;
+            
+            case 4: display();
+                    break;
+                
+            case 5: exit(0);
+
+            deafult:printf("Enter valid choice.");
+        }
+    }
+}
+
+
+_____________________________________________________________________________________________
+
+Q2
+
+
+HTML File:
+
+<HTML>
+<BODY bgcolor=blue>
+<FORM ACTION="a4b1.php" METHOD="post">
+<pre>
+<h1>Circle:</h1>
+
+        Radius: <input type=text name=a><BR>
+
+<h1>
+square:</h1>
+
+        side: <input type=text name=b><BR>
+<h1>
+Rectangle:
+</h1>
+        length: <input type=text name=c><BR>
+
+        Breadth: <input type=text name=d><BR>
+<input type=submit value=submit> <input type="reset" value=cancel>
+</pre>
+</form>
+</BODY>
+</HTML>
+
+PHP Function:
+
+
+NOTE: PHP function is saved as "a4a1.php"
+
+<HTML>
+<BODY>
+<?PHP
+$a=$_POST['a'];
+$b=$_POST['b'];
+$c=$_POST['c'];
+$d=$_POST['d'];
+
+interface one
+{
+        function area($c,$d);
+}
+class rect implements one
+{
+        function area($c,$d)
+        {
+                $area=$c*$d;
+                echo"Area of rectangle......:".$area;
+                echo"<br><BR>";
+        }
+}
+class square extends rect
+{
+        function area($b,$b)
+        {
+                $area=$b*$b;
+                echo"Area of Square.........:".$area;
+                echo"<BR><br>";
+        }
+}
+class circle
+{
+        function area($a)
+        {
+                $area=0.5*$a*$a;
+                echo"Area of circle.........:".$area;
+                echo"<br><BR>";
+        }
+}
+$o=new rect();
+$o->area($c,$d);
+$s=new square();
+$s->area($b,$b);
+$c=new circle();
+$c->area($a);
+echo "<br>";
+?>
+<a href="a4b1.html">come back</a><br>
+</BODY>
+</html>
+
+________________________________________________________________________________________________
+
+Q3
+
+Q3
+v1<-c(10,20,30,40)
+v2<-c(2,3,4)
+matrix1=array(c(v1,v2),dim=(c(2,2,2)))
+print(matrix1)
+matrix2=array(c(v2,v1),dim=(c(2,2,2)))
+print(matrix2)
+matrix1+matrix2
+matrix1-matrix2
+
+
+====================================================================================================

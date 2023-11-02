@@ -1,0 +1,313 @@
+Q8 A
+
+#include <stdio.h>
+#include <stdlib.h>
+struct BST
+{
+
+     int data;
+     struct BST *left;
+     struct BST *right;
+
+};
+
+typedef struct BST NODE;
+NODE *node;
+NODE* createtree(NODE *node, int data)
+
+{
+
+     if (node == NULL)
+     {
+
+     NODE *temp;
+     temp= (NODE*)malloc(sizeof(NODE));
+     temp->data = data;
+     temp->left = temp->right = NULL;
+     return temp;
+     }
+
+     if (data < (node->data))
+     {
+          node->left = createtree(node->left, data);
+     }
+
+     else if (data > node->data)
+     {
+          node -> right = createtree(node->right, data);
+     }
+
+     return node;
+
+}
+
+NODE* search(NODE *node, int data)
+{
+
+     if(node == NULL)
+          printf("\nElement Not Found...!/n");
+     
+     else if(data < node->data)
+     {
+          node->left=search(node->left, data);
+     }
+
+     else if(data > node->data)
+     {
+          node->right=search(node->right, data);
+     }
+
+     else
+          printf("\nElement Found is: %d", node->data);
+     
+     return node;
+
+}
+
+void inorder(NODE *node)
+{
+
+     if(node != NULL)
+     {
+          inorder(node->left);
+          printf("%d\t", node->data);
+          inorder(node->right);
+     }
+}
+
+void preorder(NODE *node)
+{
+
+     if(node != NULL)
+     {
+          printf("%d\t", node->data);
+          preorder(node->left);
+          preorder(node->right);  
+     }
+}
+
+void postorder(NODE *node)
+{
+
+     if(node != NULL)
+     {
+          postorder(node->left);
+          postorder(node->right);
+          printf("%d\t", node->data);
+     }
+}
+
+int main()
+{
+     int data, ch, i, n;
+     NODE *root=NULL;
+     while (ch!=6)
+     {
+          printf("\n\n1.Insertion in Binary Search Tree");
+          printf("\n2.Delete Element in Binary Search Tree");
+          printf("\n3.Inorder");
+          printf("\n4.Preorder");
+          printf("\n5.Postorder");
+          printf("\n6.Exit\n");
+          printf("\nEnter your Choice: ");
+
+          scanf("%d", &ch);
+
+          switch (ch)
+          {
+               case 1:   printf("\nEnter size of tree: " );
+                         scanf("%d", &n);
+                         printf("\nEnter the elements of tree)\n");
+
+                         for(i=0; i<n; i++)
+                         {
+                              scanf("%d", &data);
+                              root=createtree(root, data);
+                         }
+                         break;
+
+               case 2:   printf("\nEnter the Element to Search: ");
+                         scanf("%d", &data);
+                         root=search(root, data);
+                         break;
+
+               case 3:   printf("\nInorder Traversal: \n");
+                         inorder(root);
+                         break;
+
+               case 4:   printf("\nPreorder Traversal: \n");
+                         preorder(root);          
+                         break;
+
+               case 5:   printf("\nPostorder Traversal: \n");
+                         postorder(root);    
+                         break;
+
+               case 6:   exit(0);
+
+               default:  printf("\nEnter valid choice\n");
+                         break;
+
+          }
+     }
+}
+
+
+
+_______________________________________________________________________________________________________________________________________________________
+
+Q1 A
+
+#include<stdio.h>
+void insertionsort(int [],int);
+void main()
+{
+    int A[30],i,j,n,temp;
+    printf("Enter size of array :\n");
+    scanf("%d",&n);
+    printf("Enter array elements :\n");
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&A[i]);
+    }
+    insertionsort(A,n); 
+    printf("Sorted Array :\n");
+    for(i=0;i<n;i++)
+    {
+        printf("%d\n",A[i]);
+    }   
+}
+void insertionsort(int A[],int n)
+{
+    int i,j,temp;
+    for(i=1;i<n;i++)
+    {
+        temp=A[i];
+        j=i-1;
+        
+        while(temp<A[j] && j>=0)
+        {
+            A[j+1]=A[j];
+            j=j-1;
+        }
+        A[j+1]=temp;
+    }
+}
+
+
+___________________________________________________________________________________________
+
+Q2
+
+HTML File:
+
+<html>
+
+<body bgcolor="skyred">
+<form action="a2c2.php" method="post">
+<h2>Enter choice :</h2>
+<input type="radio" name="ch" value=1> Sort array by values in ascending,descending order<br>
+<input type="radio" name="ch" value=2> Sort array by values without changing key values <br>
+<input type="radio" name="ch" value=3> Filter odd elements from array <br>
+<input type="radio" name="ch" value=4> Sort different array at glance using single function<br>
+<input type="radio" name="ch" value=5> Merge given two arrays <br>
+<input type="radio" name="ch" value=6> Find intersection of two array <br>
+<input type="radio" name="ch" value=7> Find union of two array <br>
+<input type="radio" name="ch" value=8> Find set difference of two array <br>
+<br>
+
+<input type="submit" value="SUBMIT">  <input type="reset" value="CLEAR">
+
+</body>
+
+</html>
+
+PHP Function:
+
+
+NOTE: PHP function is saved as "ass2a1.php"
+
+<html>
+<body bgcolor="gold">
+
+<?php
+function is_odd($var)
+{
+if($var%2==1)
+return $var;
+}
+                                                                                                                             
+$choice=$_POST['ch'];
+
+        $arr=array('a'=>1,'b'=>2,'c'=>3,'d'=>4,'e'=>5,'f'=>6,'g'=>7,'h'=>8);
+        $arr1=array('l'=>11,'m'=>22,'n'=>33,'o'=>44,'p'=>55,'q'=>66,'r'=>77,'s'=>88);
+        $arr2=array('a'=>10,'b'=>20,'c'=>30,'d'=>40,'e'=>50,'f'=>60,'g'=>70,'h'=>80);
+        switch($choice)
+        {
+                case 1:
+                        sort($arr);
+                        echo "Array in ascending order:<br>";
+                        print_r($arr);
+                        rsort($arr);
+                        echo "<br>Array in descending order:<br>";
+                        print_r($arr);
+                        break;
+                case 2:
+                        asort($arr);
+                        echo "Array in ascending order:<br>";
+                        print_r($arr);
+                        arsort($arr);
+                        echo "<br>Array in descending order:<br>";
+                        print_r($arr);
+                        break;
+               case 3:
+                        print_r(array_filter($arr,'is_odd'));
+                        break;
+                case 4:
+                        array_multisort($arr,0,$arr1,1,$arr2,0);
+                        print_r($arr);
+                        echo "<br>";
+                        print_r($arr1);
+                        echo "<br>";
+                        print_r($arr2);
+                        echo "<br>";
+                        break;
+                case 5:
+                        print_r(array_merge($arr,$arr1));
+                        break;
+                case 6:
+                        print_r(array_intersect($arr,$arr1));
+                        break;
+                case 7:
+                        $union=array_merge($arr,$arr1);
+                        print_r(array_unique($union));
+                        break;
+                case 8:
+                        print_r(array_diff($arr,$arr1));
+                        break;
+        }
+
+        echo "<br><a href ='a2c2.html'> RETURN</a>";
+?>
+</font>
+</body>
+</html>
+
+
+_____________________________________________________________________________________________
+
+Q3
+
+a = c(10,20,10,20,40,50,20,30)
+b = c(10,30,10,20,0,50,30,30)
+print("Original data frame:")
+ab = data.frame(a,b)
+print(ab)
+print("Duplicate elements of the said data frame:")
+print(duplicated(ab))
+print("Unique rows of the said data frame:")
+print(unique(ab))
+
+
+
+===================================================================================================

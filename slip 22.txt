@@ -1,0 +1,376 @@
+Q1 A
+
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int top = -1;
+char stack[100];
+// to push elements in stack
+void push(char a)
+{
+      stack[top] = a;
+      top++;
+}
+// to pop elements from stack
+void pop()
+{
+      if (top == -1)
+      {
+            printf("expression is invalid\n");
+            exit(0);
+      }
+      else
+      {
+            top--;
+      }
+}
+int main()
+{
+      int i,cho;
+      char a[100];
+      printf("\nEnter expression : ");
+      scanf("%s",a);
+      for (i = 0; a[i] != '\0';i++)
+      {
+            if (a[i] == '(')
+            {
+                  push(a[i]);
+            }
+            else if (a[i] == ')')
+            {
+                  pop();
+            }
+      }
+      if (top == -1)
+      {
+            printf("Expression is Parenthesized\n\n");
+      }
+      else
+      {
+            printf("Expression is not Parenthesized\n\n");
+      }
+      return 0;
+}
+
+
+___________________________________________________________________________________________________________________________________________-
+
+
+Q1 B
+
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node * next;
+};
+struct node* head=NULL;
+
+struct node *cn()
+{
+    struct node* n;
+    n=(struct node *)malloc(sizeof(struct node));
+    return(n);
+}
+
+void createnode()   //Function to create Linked list.
+{
+    int i,n,x;
+    struct node * temp,*newnode;
+    printf("Enter size of linked list :\n");
+    scanf("%d",&n);
+    printf("Enter elements of linked list :\n");
+    for(i=1;i<=n;i++)
+    {
+        scanf("%d",&x);
+        if(head==NULL)  //checking in linked list is empty
+        {
+            head=cn();
+            head->data=x;
+            head->next=NULL;
+            temp=head;
+        }
+        else
+        { 
+            newnode=cn();
+            newnode->data=x;
+            newnode->next=NULL;
+            temp->next=newnode;
+            temp=newnode;
+        }
+    }
+}
+void count()
+{
+    struct node *temp;
+    temp=head;
+    int i=0,even=0,odd=0;
+    while(temp!=NULL)
+    {
+        if(temp->data!=0)
+        {
+            i++;
+        }
+
+        if(temp->data%2==0 && temp->data!=0)
+        {
+            even++;
+        }
+        else if (temp->data%2==1)
+        {
+            odd++;
+        }
+        temp=temp->next;
+    }
+    printf("Number of non zero elements: %d\n",i);
+    printf("Number of even elements: %d\n",even);
+    printf("Number of odd elements: %d\n",odd);
+}
+void display()
+{
+    struct node * temp;
+    temp=head;
+    if(head==NULL)
+    {
+        printf("List is empty\n");
+    }
+    else
+    {
+        while(temp->next!=NULL)
+        {
+            printf("%d\n",temp->data);
+            temp=temp->next;
+        }
+        printf("%d\n",temp->data);
+    }
+}
+
+void main()
+{
+    createnode();
+    printf("Linked list.\n");
+    display();
+    count();
+}
+
+
+___________________________________________________________________________________________________________________________________________-
+
+
+
+Q2
+
+
+1.php-
+<?php
+session_start();
+if(!isset($_SESSION['total']))
+{
+$_SESSION['total']=0;
+}
+if(isset($_POST['submit']))
+{
+$_SESSION['pname']="KACHI GHANI MUSTARD OIL (L)";
+$_SESSION['amt']="100";
+$_SESSION['total']=$_SESSION['total']+100;
+}
+?>
+<html>
+<head>
+</head>
+<body>
+<h1<center>shopping mall</center> Total :<span style="color:red<?php if(isset($_SESSION['total'])){echo $_SESSION['total'];}?></span</h1>
+<table style="width:100%">
+<tr>
+<th><a href="1.php">1</a></th>
+<th><a href="2.php">2</a></th>
+<th><a href="3.php">3</a></th>
+<th><a href="Final.php">Final</a></th>
+</tr>
+</table>
+Product 1:
+<FORM ACTION="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
+<table style="width:100%" border=1>
+<tr>
+<th>Product Image</th>
+<th>Product Name</th>
+<th>Price </th>
+<th>action</th>
+</tr>
+<tr>
+<th><img src="img/1.png"height="200" Width="200"> </th>
+<th>KACHI GHANI MUSTARD OIL (L)</th>
+<th>100</th>
+<th>
+<input type=submit name=submit value="buy">
+</form></th>
+</tr>
+</table>
+</body>
+</html>
+
+2.php-
+<?php
+session_start();
+if(!isset($_SESSION['total']))
+{
+$_SESSION['total']=0;
+}
+if(isset($_POST['submit']))
+{
+$_SESSION['pname']=$_SESSION['pname'].","."Patanjali Saundarya Face WashOIL (L)";
+$_SESSION['amt']=$_SESSION['amt'].","."50";
+$_SESSION['total']=$_SESSION['total']+50;
+}
+?>
+<html>
+<head>
+</head>
+<body>
+<h1<center>shopping mall</center> Total :<span style="color:red;"><?php if(isset($_SESSION['total'])){echo $_SESSION['total'];}?></span></h1>
+<table style="width:100%">
+<tr<br> <th<a href="1.php">1</a</th>
+<th<a href="2.php">2</a</th>
+<th><a href="3.php">3</a></th>
+<th<a href="Final.php">Final</th>
+</tr>
+</table>
+Product 2:
+<FORM ACTION="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
+<table style="width:100%" border=1>
+<tr>
+<th>Product Image</th>
+<th>Product Name</th>
+<th>Price </th>
+<th>action</th>
+</tr>
+<tr>
+<th><img src="img/2.jpg"height="200" Width="200"> </th>
+<th>Patanjali Saundarya Face Wash</th>
+<th>50</th>
+<th>
+<input type=submit name=submit value="buy">
+</form></th>
+</tr>
+</table>
+</body>
+</html>
+
+3.php-
+<?php
+session_start();
+if(!isset($_SESSION['total']))
+{
+$_SESSION['total']=0;
+}
+if(isset($_POST['submit']))
+{
+$_SESSION['pname']=$_SESSION['pname'].","."Patanjali mango juices";
+$_SESSION['amt']=$_SESSION['amt'].","."70";
+$_SESSION['total']=$_SESSION['total']+70;
+}
+?> <html>
+<head>
+</head>
+body>
+<h1><center>shopping mall<</center> Total <span style="color:red;"><?php if(isset($_SESSION['total'])){echo $_SESSION['total'];}?></span></h1>
+<table style="width:100%">
+<tr>
+<th><a href="1.php">1</a></th>
+<th><a href="2.php">2</a></th>
+<th><a href="3.php">3</a></th>
+<th><a href="Final.php">Final</a></th>
+</tr>
+</table>
+Product 3:
+<FORM ACTION="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
+<table style="width:100%" border=1>
+<tr> <th>Product Imag</th>
+<th>Product Name</th>
+<th>Price </th>
+<th>action</th>
+</tr<br> <tr>
+<th<img src="img/3.jpg"height="200" Width="200"> </th>
+<th>Patanjali mango juices</th>
+<th>70<</th>
+<th>
+<input type=submit name=submit value="buy" >
+</form>
+</tr>
+</table>
+</body>
+</html>
+
+final.php
+<?php
+session_start();
+?>
+<html>
+<head>
+<script>
+function myFunction()
+{
+window.print();
+}
+</script>
+</head>
+<body>
+<h1><center>shopping mall</center> Total :<span style="color:red<?php if(isset($_SESSION['total'])){echo $_SESSION['total'];}?></span> <table style="width:100%">
+<tr>
+<th<a href="1.php">1</a></th>
+<th<a href="2.php">2</a</th>
+<th<a href="3.php">3</a></th>
+<th><a href="Final.php">Final</a></th>
+</tr>
+</table>
+<br>
+<br>
+<h2><center>Final Bill</center> Total :</h2>
+<table style="width:100%" border=1>
+<tr>br> <th>Product Name</th>
+<th>AMount /th>
+<th>Total</th>
+<th>Print</th>
+</tr>
+<tr>
+<th><?php if(isset($_SESSION['pname'])){echo $_SESSION['pname'];}?></th>
+<th><?php if(isset($_SESSION['amt'])){echo $_SESSION['amt'];}?></th>
+<th><span style="color:red;"><?php if(isset($_SESSION['total'])){echo $_SESSION['total'];}?></span></th>
+<th><button onclick="myFunction()">Print </button>
+</tr>
+</table>
+</body>
+</html>
+
+
+___________________________________________________________________________________________________________________________________________-
+
+
+
+Q3
+
+
+for(i in 1:100)
+{
+  if(i%%3==0 && i%%5==0)
+  {
+    print("SYBBA")
+  }
+  else if(i%%3==0)
+  {
+    print("SY")
+  }
+  else if(i%%5==0)
+  {
+    print("BBA")
+  }
+  else
+  {
+    print(i)
+  }
+}
+
+
+================================================================================================================================================

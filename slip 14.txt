@@ -1,0 +1,167 @@
+Q1 A
+
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <limits.h>
+# define MAX 50
+struct Stack
+{
+    int top;
+    unsigned size;
+    char* array;
+};
+
+struct Stack* createStack(unsigned size)
+{
+    struct Stack* stack = (struct Stack*) malloc(sizeof(struct Stack));
+    stack->size = size;
+    stack->top = -1;
+    stack->array = (char*) malloc(stack->size * sizeof(char));
+    return stack;
+}
+int isFull(struct Stack* stack)
+{ return stack->top == stack->size - 1; }
+
+int isEmpty(struct Stack* stack)
+{ return stack->top == -1; }
+
+void push(struct Stack* stack, char item)
+{
+    if (isFull(stack))
+        return;
+    stack->array[++stack->top] = item;
+}
+
+char pop(struct Stack* stack)
+{
+    if (isEmpty(stack))
+        return 0;
+    return stack->array[stack->top--];
+}
+
+void reverse(char str[])
+{
+   
+    int n = strlen(str);
+    struct Stack* stack = createStack(n);
+ 
+    
+    int i;
+    for (i = 0; i < n; i++)
+        push(stack, str[i]);
+ 
+    
+    for (i = 0; i < n; i++)
+        str[i] = pop(stack);
+}
+ 
+
+int main()
+{
+	int i,len;
+	
+    char str[MAX] ;
+    
+    printf("Enter the string\n");
+    scanf("%s",str);
+    len=strlen(str);
+    for(i=0; i<len; i++)
+    {
+    reverse(str);	
+	}
+    
+    printf("Reversed string is %s", str);
+ 
+    return 0;
+}
+
+_________________________________________________________________________________________________
+
+Q1 B
+
+
+#include <stdio.h>
+#include <string.h>
+void main()
+{
+  char name[25][50],temp[25];
+  int n,i,j;
+       printf("\n\nSorts the strings of an array using bubble sort :\n");
+       printf("-----------------------------------------------------\n");  
+  printf("Input number of strings :");
+  scanf("%d",&n);
+
+printf("Input string %d :\n",n);
+  for(i=0;i<=n;i++)
+  {
+       fgets(name[i], sizeof name, stdin);
+  }
+     /*Logic Bubble Sort*/
+
+     for(i=1;i<=n;i++)
+	for(j=0;j<=n-i;j++)
+	  if(strcmp(name[j],name[j+1])>0)
+	  { 
+            strcpy(temp,name[j]);
+	    strcpy(name[j],name[j+1]);
+	    strcpy(name[j+1],temp);
+	  }
+   printf("The strings appears after sorting :\n");
+	      for(i=0;i<=n;i++)
+		 printf("%s\n",name[i]);
+} 
+
+
+____________________________________________________________________________________________
+
+Q2
+
+
+html function:
+
+
+<html>
+<body>
+<form name="form1" method="post" action="slip14.php">
+Enter the EmailID *<input type="text" name="email"></input>
+<input type="submit" value="submit"></input>
+</form>
+</body>
+</html>
+
+
+PHP funtion:
+
+<?php
+$email=$_POST['email'];
+$regex = '/^[_a-z0-9-]+(\.[a-z0-9-]+)*@[a-z0-9]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/';
+if(preg_match($regex,$email)){
+            echo $email .  "it is valid email id";
+}
+else
+{
+            echo $email ."invalid email,Please try again.";
+}
+?>
+
+
+_________________________________________________________________________________________________
+
+Q3
+
+
+f1 <- factor(sample(LETTERS, size=6, replace=TRUE))
+f2 <- factor(sample(LETTERS, size=6, replace=TRUE))
+print("Original factors:")
+print(f1)
+print(f2)
+f = factor(c(levels(f1)[f1], levels(f2)[f2]))
+print("After concatenate factor becomes:")
+print(f)
+fs<-factor(f,levels=rev(levels(f)))
+print(fs)
+
+
+===================================================================================================
